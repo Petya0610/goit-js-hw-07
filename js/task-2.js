@@ -1,7 +1,13 @@
+
 const gallery = document.querySelector('.gallery');
-const galleryMarkup = images.map(({ url, alt }) => `
-  <li class="gallery-item">
-    <img src="${url}" alt="${alt}">
-  </li>
-`).join('');
-gallery.insertAdjacentHTML('beforeend', galleryMarkup);
+
+const galleryItemsHTML = images.map(image => {
+  const li = document.createElement('li');
+  const img = document.createElement('img');
+  img.src = image.url;
+  img.alt = image.alt;
+  li.appendChild(img);
+  return li.outerHTML;
+}).join('');
+
+gallery.insertAdjacentHTML('beforeend', galleryItemsHTML);
